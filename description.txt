@@ -1,0 +1,4 @@
+Author: Buddy (28116)
+Description:
+	mod meant to work with Skyboards skyboardmining
+	/SkyboardMiningToggle
