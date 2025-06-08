@@ -137,7 +137,7 @@ package Client_SkyboardMiningPackage
 			case "/s":  commandToServer('spawn');
 			case "/SkyboardMiningHelp" or "/SMhelp":
 				newChatHud_AddLine("\c3/SkyboardMiningToggle \c7or \c3/SMToggle\c6 - toggle the mod");
-				newChatHud_AddLine("\c3/goal \c7or \c3/g\c6 - main command cmd (try /goal help)");
+				newChatHud_AddLine("\c3/goal \c7or \c3/g\c6 - main command (try /goal help)");
 				newChatHud_AddLine("\c3/lud \c7or \c3/ld\c6 - last upgrade depth (history)");
 				newChatHud_AddLine("\c3/li\c6 - last upgrade item (history)");
 				newChatHud_AddLine("\c3/sinv\c6 - silent /inv, mainly for updating hud quantities");
@@ -224,8 +224,15 @@ function Skyboard_Command_Goal(%message)
 				$SkyboardMining::OreGoalCount++;
 			}
 			Skyboard_updateMessageHud();
-		default:
-			newChatHud_AddLine("/goal [add/clear/list]");
+	}
+	if(%type $= "" || %type $= "help")
+	{
+		newChatHud_AddLine("\c3/goal\c6 commands");
+		newChatHud_AddLine("   \c3[lastupgrade \c7or\c3 lu \c7or\c3 u]\c6 set the current craft track to the last seen craft prompt");
+		newChatHud_AddLine("   \c3[add \c7or\c3 a]\c6 add an ore (EXACT)");
+		newChatHud_AddLine("   \c3[clear \c7or\c3 c]\c6 clear the hud");
+		newChatHud_AddLine("   \c3[lock \c7or\c3 lo]\c6 toggle lock all current ores tracked");
+		newChatHud_AddLine("   \c3[list \c7or\c3 li]\c6 list all goals");
 	}
 	
 	if(%refreshInventory)
