@@ -90,7 +90,9 @@ package Client_SkyboardMiningPackage
 	{
 		%message = %this.getValue();
 		%command = firstWord(%message);
-		if(!$SkyboardMining::Active && %command !$= "/SkyboardMiningToggle")
+		if(!$SkyboardMining::Active
+			&& %command !$= "/SkyboardMiningToggle" && %command !$= "/SMToggle" 
+			&& %command !$= "/SkyboardMiningHelp"   && %command !$= "/SMHelp" )
 		{
 			parent::send(%this);
 			return;
@@ -102,7 +104,7 @@ package Client_SkyboardMiningPackage
 				exec("./client.cs");
 				newChatHud_AddLine("\c6Reloading Client_SkyboardMining");
 				
-			case "/SkyboardMiningToggle":
+			case "/SkyboardMiningToggle" or "/SMToggle":
 				$SkyboardMining::Active = !$SkyboardMining::Active;
 				if($SkyboardMining::Active)
 				{
@@ -133,8 +135,8 @@ package Client_SkyboardMiningPackage
 			case "/ud": commandToServer('upgradeDepth');
 			case "/ui": commandToServer('upgradeInventory');
 			case "/s":  commandToServer('spawn');
-			case "/SMhelp":
-				newChatHud_AddLine("\c3/SkyboardMiningToggle\c6 - toggle the mod");
+			case "/SkyboardMiningHelp" or "/SMhelp":
+				newChatHud_AddLine("\c3/SkyboardMiningToggle \c7or \c3/SMToggle\c6 - toggle the mod");
 				newChatHud_AddLine("\c3/goal \c7or \c3/g\c6 - main command cmd (try /goal help)");
 				newChatHud_AddLine("\c3/lud \c7or \c3/ld\c6 - last upgrade depth (history)");
 				newChatHud_AddLine("\c3/li\c6 - last upgrade item (history)");
@@ -143,6 +145,7 @@ package Client_SkyboardMiningPackage
 				newChatHud_AddLine("\c3/ui\c6 - short for /upgradeInventory");
 				newChatHud_AddLine("\c3/s\c6 - short for /spawn");
 				newChatHud_AddLine("\c3/SMReload\c6 - reload the mod");
+				newChatHud_AddLine("\c3/SkyboardMiningHelp \c7or \c3/SMhelp\c6 - help");
 
 			default: %didNotRunCommand = true;
 		}
