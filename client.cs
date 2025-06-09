@@ -1,4 +1,3 @@
-$SkyboardMining::InventoryHeaderString = "<color:0E6D52>Grass \c6-"; //the first string that occurs when typing /inv; todo: think its now grass
 package Client_SkyboardMiningPackage
 {
 	function mouseFire(%x)
@@ -45,10 +44,10 @@ package Client_SkyboardMiningPackage
 			return parent::clientCmdServerMessage(%msgType, %msgString, %a1, %a2, %a3, %a4, %a5, %a6, %a7, %a8, %a9, %a10);
 		}
 		%realMsg = deTag(%msgString);
-		if(striPos(%realMsg, $SkyboardMining::InventoryHeaderString) != -1)
+		if(striPos(%realMsg, "<color:0E6D52>Grass \c6-") != -1)
 		{
 			deleteVariables("$SkyboardMining::Inventory*");
-			$SkyboardMining::ReadingInventory = $Sim::Time;
+			$SkyboardMining::ReadingInventory = $Sim::Time + 1;
 		} else if(striPos(%realMsg, "\c6Total cash:\c2") != -1)
 		{
 			Skyboard_updateMessageHud();
